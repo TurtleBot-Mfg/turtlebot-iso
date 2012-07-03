@@ -1,0 +1,126 @@
+#!/usr/bin/env python
+import os
+import sys
+
+
+def chroot_status():
+    status = os.system("ischroot");
+    if status == 0:
+        return True
+    else:
+        return False
+
+def update_package_cache():
+    if chrooted:
+        status = os.system("apt-get update");
+        print "Running apt-get update"
+    else:
+        print "update_package_cache(): apt-get update"
+
+def install_key(url):
+    if chrooted:
+        status = os.system("wget %s -O - | apt-key add -"%(url))
+        print "Adding apt key %s"%(url)
+    else:
+        print("install_key(url): wget %s -O - | apt-key add -"%(url))
+
+def install_package(pkg):
+    if chrooted:
+        status = os.system("apt-get install --assume-yes --force-yes %s"%(pkg))
+        print "Installing %s"%(pkg)
+    else:
+        print("install_package(pkg): apt-get install --assume-yes --force-yes %s"%(pkg))
+
+def deinstall_package(pkg):
+    if chrooted:
+        status = os.system("apt-get purge --assume-yes --force-yes %s"%(pkg))
+        print "Deinstalling %s"%(pkg)
+    else:
+        print("deinstall_package(pkg): apt-get purge --assume-yes --force-yes %s"%(pkg))
+
+def install_dpkg(pkg):
+    if chrooted:
+        status = os.system("dpkg -i %s/%s"%(script_dir,pkg))
+        print "Installing %s/%s"%(script_dir,pkg)
+    else:
+        print("install_package(pkg): %s"%(pkg))
+
+def remove_package(pkg):
+    status = os.system("echo remove " + pkg)
+    print str(status) + "\n"
+#	apt-get --purge remove --assume-yes --force-yes "$@"
+
+def add_repository():
+    if chrooted:
+        repo_file = open("/etc/apt/sources.list.d/ros-latest.list", "w")
+        print >> repo_file, "deb http://packages.ros.org/ros/ubuntu precise main #Robot Operating System"
+        repo_file.close()
+    else:
+        print("add_repository(): deb ... #Robot Operating System")
+
+def enable_multiuniverse():
+    if chrooted:
+        status = os.system("cp %s/sources.list /etc/apt/sources.list"%(script_dir))
+        print "Enabling Multiverse and Universe"
+    else:
+        print("enable_multiuniverse(): cp %s/sources.list /etc/apt/sources.list"%(script_dir))
+
+def enable_ros_bashrc():
+    if chrooted:
+        bashrc_file = open("/etc/skel/.bashrc", "a")
+        print >> bashrc_file, "source /opt/ros/fuerte/setup.bash"
+        bashrc_file.close()
+    else:
+        print("enable_ros_bashrc(): source /opt/ros/fuerte/setup.bash")
+
+def main(args):
+    global script_dir
+    script_dir = os.path.dirname(sys.argv[0])
+
+    global chrooted
+    # check if chrooted
+    chrooted = chroot_status()
+    if not chrooted:
+	print "UCK Customization Script"
+        print "----"
+        print "Cannot detect chrooted environment: Running in DEBUG Mode"
+
+    enable_multiuniverse()
+    add_repository()
+    install_key("http://packages.ros.org/ros.key")
+    update_package_cache()
+
+    # Deinstall unwanted packages
+    apt_file = open("%s/apt_deinstall"%(script_dir),"r")
+    for package in apt_file:
+        package = package.strip()
+        if package != "" and package[0] != "#":
+            deinstall_package(package)
+    apt_file.close()
+
+    # Install packages via apt-get
+    apt_file = open("%s/apt_packages"%(script_dir),"r")
+    for package in apt_file:
+        package = package.strip()
+        if package != "" and package[0] != "#":
+            install_package(package)
+    apt_file.close()
+
+    # Install packages via dpkg
+    deb_file = open("%s/deb_packages"%(script_dir),"r")
+    for package in deb_file:
+        package = package.strip()
+        if package != "" and package[0] != "#":
+            install_dpkg(package)
+    deb_file.close()
+
+    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
+    status = os.system("apt-get update --assume-yes --force-yes")
+    status = os.system("apt-get dist-upgrade --assume-yes --force-yes")
+    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
+
+    enable_ros_bashrc()
+
+
+if __name__ == '__main__':
+  main(sys.argv)

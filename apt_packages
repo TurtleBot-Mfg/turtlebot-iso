@@ -1,0 +1,18 @@
+python-setuptools
+python-pip
+mercurial
+git-core
+subversion
+linux-image-generic
+linux-headers-generic
+daemontools
+dkms
+chrony
+openssh-server
+#Stupid bug?
+wbritish
+poppler-data
+#ros-fuerte-desktop-full
+ros-fuerte-turtlebot
+ros-fuerte-turtlebot-apps
+ros-fuerte-turtlebot-viz

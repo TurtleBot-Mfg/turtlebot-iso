@@ -1,0 +1,6 @@
+sudo uck-remaster ~/Downloads/ubuntu-12.04-desktop-amd64.iso ~/turtlebot-iso
+
+apt_packages	-	List of packages to install via apt
+apt_deinstall	-	Packages to remove from Ubuntu ISO
+deb_packages	-	Packages to install that are in a public repo
+			Testing Only
