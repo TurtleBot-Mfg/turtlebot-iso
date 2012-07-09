@@ -12,7 +12,15 @@ openssh-server
 #Stupid bug?
 wbritish
 poppler-data
-#ros-fuerte-desktop-full
+thunderbird-locale-en
+thunderbird-locale-en-us
+myspell-en-au
+myspell-en-gb
+myspell-en-za
+openoffice.org-hyphenation
+hyphen-en-us
+mythes-en-us
+ros-fuerte-desktop-full
 ros-fuerte-turtlebot
 ros-fuerte-turtlebot-apps
 ros-fuerte-turtlebot-viz

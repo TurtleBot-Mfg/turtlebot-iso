@@ -45,6 +45,13 @@ def install_dpkg(pkg):
     else:
         print("install_package(pkg): %s"%(pkg))
 
+def install_pip(pkg):
+    if chrooted:
+        status = os.system("pip install %s"%(pkg))
+        print "Installing %s"%(pkg)
+    else:
+        print("install_package(pkg): %s"%(pkg))
+
 def remove_package(pkg):
     status = os.system("echo remove " + pkg)
     print str(status) + "\n"
@@ -113,6 +120,14 @@ def main(args):
         if package != "" and package[0] != "#":
             install_dpkg(package)
     deb_file.close()
+
+    # Install packages via pip
+    pip_file = open("%s/pip_packages"%(script_dir),"r")
+    for package in pip_file:
+        package = package.strip()
+        if package != "" and package[0] != "#":
+            install_pip(package)
+    pip_file.close()
 
     status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
     status = os.system("apt-get update --assume-yes --force-yes")
