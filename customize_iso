@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+import os
+import sys
+
+def main(args):
+    global script_dir
+    global remaster_iso_dir
+    script_dir = os.path.dirname(sys.argv[0])
+    remaster_iso_dir = os.path.expanduser('~/tmp/remaster-iso')
+    remaster_root_dir = os.path.expanduser('~/tmp/remaster-root')
+
+    patch_cmd = "patch %s/preseed/ubuntu.seed %s/patch/ubuntu.seed.patch"%(remaster_iso_dir,script_dir)
+    status = os.system(patch_cmd)
+
+    patch_cmd = "patch %s/usr/bin/ubiquity-dm %s/patch/ubiquity-dm.patch"%(remaster_root_dir,script_dir)
+    status = os.system(patch_cmd)
+
+    patch_cmd = "cat %s/inst_packages >> %s/casper/filesystem.manifest-remove"%(script_dir,remaster_iso_dir)
+    status = os.system(patch_cmd)
+
+    patch_cmd = "patch %s/isolinux/gfxboot.cfg %s/patch/gfxboot.cfg.patch"%(remaster_iso_dir,script_dir)
+    status = os.system(patch_cmd)
+
+
+if __name__ == '__main__':
+  main(sys.argv)
+

@@ -40,8 +40,8 @@ def deinstall_package(pkg):
 
 def install_dpkg(pkg):
     if chrooted:
-        status = os.system("dpkg -i %s/%s"%(script_dir,pkg))
-        print "Installing %s/%s"%(script_dir,pkg)
+        status = os.system("dpkg -i %s/deb/%s"%(script_dir,pkg))
+        print "Installing %s/deb/%s"%(script_dir,pkg)
     else:
         print("install_package(pkg): %s"%(pkg))
 
@@ -83,6 +83,7 @@ def enable_ros_bashrc():
 def main(args):
     global script_dir
     script_dir = os.path.dirname(sys.argv[0])
+    remaster_dir = os.path.expanduser('~/tmp/remaster-root')
 
     global chrooted
     # check if chrooted

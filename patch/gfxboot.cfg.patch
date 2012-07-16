@@ -1,0 +1,10 @@
+--- gfxboot.cfg.orig	2012-07-15 06:23:30.260875432 -0400
++++ gfxboot.cfg	2012-07-15 06:25:12.409941930 -0400
+@@ -1,6 +1,6 @@
+ foreground=0xFFFFFF
+ background=0x958490
+-screen-colour=0x270A1E
++screen-colour=0x162E12
+ hidden-timeout=2
+ label normal=Normal
+ append normal=
