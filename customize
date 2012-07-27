@@ -93,11 +93,21 @@ def main(args):
         print "----"
         print "Cannot detect chrooted environment: Running in DEBUG Mode"
 
+    print >> sys.stderr, "enable_multiuniverse()"
     enable_multiuniverse()
     add_repository()
     install_key("http://packages.ros.org/ros.key")
+    status = os.system("sudo add-apt-repository -y ppa:iheartengineering/ros-support")
     update_package_cache()
 
+    print >> sys.stderr, "apt-get update"
+    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
+    status = os.system("apt-get update --assume-yes --force-yes")
+    status = os.system("apt-get upgrade --assume-yes --force-yes")
+    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
+    print "F005"
+
+    print >> sys.stderr, "Deinstall unwanted packages"
     # Deinstall unwanted packages
     apt_file = open("%s/apt_deinstall"%(script_dir),"r")
     for package in apt_file:
@@ -106,6 +116,7 @@ def main(args):
             deinstall_package(package)
     apt_file.close()
 
+    print >> sys.stderr, "Install packages via apt-get"
     # Install packages via apt-get
     apt_file = open("%s/apt_packages"%(script_dir),"r")
     for package in apt_file:
@@ -114,6 +125,7 @@ def main(args):
             install_package(package)
     apt_file.close()
 
+    print >> sys.stderr, "Install packages via dpkg"
     # Install packages via dpkg
     deb_file = open("%s/deb_packages"%(script_dir),"r")
     for package in deb_file:
@@ -122,6 +134,7 @@ def main(args):
             install_dpkg(package)
     deb_file.close()
 
+    print >> sys.stderr, "Install packages via pip"
     # Install packages via pip
     pip_file = open("%s/pip_packages"%(script_dir),"r")
     for package in pip_file:
@@ -130,13 +143,9 @@ def main(args):
             install_pip(package)
     pip_file.close()
 
-    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
-    status = os.system("apt-get update --assume-yes --force-yes")
-    status = os.system("apt-get dist-upgrade --assume-yes --force-yes")
-    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
 
+    print >> sys.stderr, "enable_ros_bashrc"
     enable_ros_bashrc()
-
 
 if __name__ == '__main__':
   main(sys.argv)

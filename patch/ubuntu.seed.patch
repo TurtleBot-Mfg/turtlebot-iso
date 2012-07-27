@@ -1,9 +1,10 @@
---- ubuntu.seed.bak	2012-07-15 04:57:30.164323399 -0400
-+++ ubuntu.seed	2012-07-15 04:58:41.596711698 -0400
-@@ -1,5 +1,6 @@
+--- ubuntu.seed.orig	2012-07-15 04:57:30.164323399 -0400
++++ ubuntu.seed	2012-07-21 02:44:03.389161290 -0400
+@@ -1,5 +1,7 @@
  # Enable extras.ubuntu.com.
  d-i	apt-setup/extras	boolean true
 +d-i	passwd/user-default-groups	string adm cdrom dialout sudo dip plugdev lpadmin sambashare
++d-i	passwd/username	string turtlebot
  # Install the Ubuntu desktop.
  tasksel	tasksel/first	multiselect ubuntu-desktop
  # On live DVDs, don't spend huge amounts of time removing substantial

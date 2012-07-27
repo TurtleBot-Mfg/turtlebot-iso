@@ -1,6 +1,7 @@
 # Enable extras.ubuntu.com.
 d-i	apt-setup/extras	boolean true
 d-i	passwd/user-default-groups	string adm cdrom dialout sudo dip plugdev lpadmin sambashare
+d-i	passwd/username	string turtlebot
 # Install the Ubuntu desktop.
 tasksel	tasksel/first	multiselect ubuntu-desktop
 # On live DVDs, don't spend huge amounts of time removing substantial

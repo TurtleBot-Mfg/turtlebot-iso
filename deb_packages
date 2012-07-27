@@ -1,4 +1,5 @@
-turtlebot-ros-fuerte_0.0.7_amd64.deb
-turtlebot-env-fuerte_0.0.3_amd64.deb
-turtlebot-menus_0.0.7_amd64.deb
-turtlebot-wallpapers_0.0.5_amd64.deb
+turtlebot-config_0.0.3_all.deb
+turtlebot-indicator_0.0.1_all.deb
+ros-system-tools_0.0.1_all.deb
+ros-system-workstation_0.0.1_all.deb
+turtlebot-desktop_0.0.3_amd64.deb

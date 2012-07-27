@@ -21,6 +21,7 @@ def main(args):
     patch_cmd = "patch %s/isolinux/gfxboot.cfg %s/patch/gfxboot.cfg.patch"%(remaster_iso_dir,script_dir)
     status = os.system(patch_cmd)
 
+    #update_package_cache()
 
 if __name__ == '__main__':
   main(sys.argv)
