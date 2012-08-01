@@ -1,3 +1,5 @@
+oem-config-gtk
+oem-config-slideshow-ubuntu
 #ubiquity-slideshow-edubuntu
 python-setuptools
 python-pip
@@ -30,7 +32,7 @@ ros-fuerte-zeroconf-implementations
 turtlebot-config
 turtlebot-ros-fuerte
 turtlebot-env
-#turtlebot-desktop
+turtlebot-desktop
 turtlebot-wallpapers
 turtlebot-branding
 turtlebot-doc-fuerte

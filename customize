@@ -102,8 +102,8 @@ def main(args):
 
     print >> sys.stderr, "apt-get update"
     status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
-    status = os.system("apt-get update --assume-yes --force-yes")
-    status = os.system("apt-get upgrade --assume-yes --force-yes")
+    status = os.system("apt-get update --assume-yes")
+    status = os.system("apt-get upgrade --assume-yes")
     status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
     print "F005"
 
