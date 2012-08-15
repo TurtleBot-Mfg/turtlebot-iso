@@ -1,3 +1,5 @@
+Requires Ubuntu Customization Kit 2.4.6+
+
 Building the ISO
 --------------------------------
 sudo uck-remaster ~/Downloads/ubuntu-12.04-desktop-amd64.iso ~/turtlebot-iso

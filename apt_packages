@@ -23,12 +23,18 @@ myspell-en-za
 openoffice.org-hyphenation
 hyphen-en-us
 mythes-en-us
+#
+python-rosinstall
+python-rosdep
+#
 ros-fuerte-desktop-full
 ros-fuerte-turtlebot
 ros-fuerte-turtlebot-apps
 ros-fuerte-turtlebot-viz
 ros-fuerte-zeroconf-implementations
 # ----
+ros-system-tools
+ros-system-workstation
 turtlebot-config
 turtlebot-ros-fuerte
 turtlebot-env
@@ -36,3 +42,4 @@ turtlebot-desktop
 turtlebot-wallpapers
 turtlebot-branding
 turtlebot-doc-fuerte
+turtlebot-indicator
