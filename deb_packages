@@ -1,8 +1,2 @@
-#turtlebot-indicator_0.0.1_all.deb
-ros-system-tools_0.0.2~1.gbp410fcf_all.deb
-ros-system-workstation_0.0.2~1.gbpabe8df_all.deb
-turtlebot-config_0.0.4~1.gbp8be9ba_all.deb
-turtlebot-ros-fuerte_0.0.3_amd64.deb
-turtlebot-env_0.0.3~1.gbp440ea1_amd64.deb
-turtlebot-desktop_0.0.5~1.gbp13636e_amd64.deb
-turtlebot-indicator_0.0.3~1.gbp7cbe81_all.deb
+turtlebot-ros-groovy_0.0.1_amd64.deb
+turtlebot-rosinstall-groovy_0.0.1_amd64.deb
