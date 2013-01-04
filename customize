@@ -75,10 +75,10 @@ def enable_multiuniverse():
 def enable_ros_bashrc():
     if chrooted:
         bashrc_file = open("/etc/skel/.bashrc", "a")
-        print >> bashrc_file, "source /opt/ros/fuerte/setup.bash"
+        print >> bashrc_file, "source /opt/ros/groovy/setup.bash"
         bashrc_file.close()
     else:
-        print("enable_ros_bashrc(): source /opt/ros/fuerte/setup.bash")
+        print("enable_ros_bashrc(): source /opt/ros/groovy/setup.bash")
 
 def main(args):
     global script_dir
