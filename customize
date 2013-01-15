@@ -60,6 +60,7 @@ def remove_package(pkg):
 def add_repository():
     if chrooted:
         repo_file = open("/etc/apt/sources.list.d/ros-latest.list", "w")
+        # print >> repo_file, "deb http://packages.ros.org/ros-shadow-fixed/ubuntu precise main #Robot Operating System"
         print >> repo_file, "deb http://packages.ros.org/ros/ubuntu precise main #Robot Operating System"
         repo_file.close()
     else:
