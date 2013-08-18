@@ -26,10 +26,10 @@ def install_key(url):
 
 def install_package(pkg):
     if chrooted:
-        status = os.system("apt-get install --assume-yes --force-yes %s"%(pkg))
+        status = os.system("export DEBIAN_FRONTEND=noninteractive && apt-get install --assume-yes %s"%(pkg))
         print "Installing %s"%(pkg)
     else:
-        print("install_package(pkg): apt-get install --assume-yes --force-yes %s"%(pkg))
+        print("install_package(pkg): export DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes %s"%(pkg))
 
 def deinstall_package(pkg):
     if chrooted:
@@ -37,6 +37,13 @@ def deinstall_package(pkg):
         print "Deinstalling %s"%(pkg)
     else:
         print("deinstall_package(pkg): apt-get purge --assume-yes --force-yes %s"%(pkg))
+
+def apt_autorm():
+    if chrooted:
+        status = os.system("apt-get autoremove")
+        print "apt-get autoremoving"
+    else:
+        print("apt-get autoremove")
 
 def install_dpkg(pkg):
     if chrooted:
@@ -102,10 +109,10 @@ def main(args):
     update_package_cache()
 
     print >> sys.stderr, "apt-get update"
-    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
+    #status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
     status = os.system("apt-get update --assume-yes")
     status = os.system("apt-get upgrade --assume-yes")
-    status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
+    #status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
     print "F005"
 
     print >> sys.stderr, "Deinstall unwanted packages"
@@ -143,6 +150,8 @@ def main(args):
         if package != "" and package[0] != "#":
             install_pip(package)
     pip_file.close()
+
+    apt_autorm()
 
 
     print >> sys.stderr, "enable_ros_bashrc"

@@ -6,7 +6,8 @@ python-pip
 mercurial
 git-core
 subversion
-linux-image-generic
+#linux-image-generic
+linux-image-current-generic
 linux-headers-generic
 daemontools
 dkms
@@ -23,6 +24,8 @@ myspell-en-za
 openoffice.org-hyphenation
 hyphen-en-us
 mythes-en-us
+# ----
+bcmwl-kernel-source
 # ----
 python
 daemontools
@@ -128,10 +131,10 @@ ros-system-daemon-groovy
 turtlebot-ros-groovy
 #turtlebot-config
 turtlebot-env-groovy
-#turtlebot-desktop
+turtlebot-desktop-groovy
 turtlebot-doc-groovy
 turtlebot-indicator-groovy
-#turtlebot-wallpapers
-#turtlebot-branding
+turtlebot-branding-groovy
+turtlebot-wallpapers
+#ihe-branding
 ihe-wallpapers
-ihe-branding
