@@ -1,0 +1,5 @@
+
+in /etc/ros/setup.sh
+
+export ROS_MASTER_URI=http://<COMPUTER_IP>:11311
+export ROS_HOSTNAME=<COMPUTER_IP>

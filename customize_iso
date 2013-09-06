@@ -6,8 +6,10 @@ def main(args):
     global script_dir
     global remaster_iso_dir
     script_dir = os.path.dirname(sys.argv[0])
-    remaster_iso_dir = os.path.expanduser('~/tmp/remaster-iso')
-    remaster_root_dir = os.path.expanduser('~/tmp/remaster-root')
+    remaster_iso_dir = os.path.expanduser('/iso/remaster-iso')
+    #remaster_iso_dir = os.path.expanduser('~/tmp/remaster-iso')
+    remaster_root_dir = os.path.expanduser('/iso/remaster-root')
+    #remaster_root_dir = os.path.expanduser('~/tmp/remaster-root')
 
     patch_cmd = "patch %s/preseed/ubuntu.seed %s/patch/ubuntu.seed.patch"%(remaster_iso_dir,script_dir)
     status = os.system(patch_cmd)

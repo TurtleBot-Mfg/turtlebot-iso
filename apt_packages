@@ -1,3 +1,12 @@
+linux-generic-lts-quantal
+linux-headers-generic
+linux-headers-generic-lts-quantal
+linux-image
+linux-image-generic
+linux-image-generic-lts-quantal
+#grub-common
+#grub2-common
+#grub-efi
 #
 oem-config-gtk
 oem-config-slideshow-ubuntu
@@ -7,9 +16,6 @@ python-pip
 mercurial
 git-core
 subversion
-#linux-image-generic
-linux-image-current-generic
-linux-headers-generic
 daemontools
 dkms
 chrony
@@ -26,7 +32,7 @@ openoffice.org-hyphenation
 hyphen-en-us
 mythes-en-us
 # ----
-bcmwl-kernel-source
+#bcmwl-kernel-source
 # ----
 python
 daemontools
@@ -38,6 +44,10 @@ libprotobuf-dev
 libprotoc-dev
 libtar-dev
 libftdi-dev
+libpcl-1.7-doc
+libopenni0
+libopenni-dev
+libopenni-sensor-primesense-dev
 ros-hydro-ros-base
 ros-hydro-ecl-threads
 ros-hydro-ecl-devices
@@ -59,8 +69,8 @@ ros-hydro-depthimage-to-laserscan
 ros-hydro-navigation
 ros-hydro-robot-model
 ros-hydro-diagnostics
-ros-hydro-openni-launch
 ros-hydro-openni-camera
+ros-hydro-openni-launch
 ros-hydro-rviz
 ros-hydro-robot-model-visualization
 ros-hydro-rqt
@@ -119,15 +129,25 @@ ros-hydro-warehouse-ros
 ros-hydro-python-orocos-kdl
 ros-hydro-dynamixel-motor
 # ----
-ros-hydro-turtlebot
 ros-hydro-turtlebot-apps
+ros-hydro-turtlebot-bringup
 ros-hydro-turtlebot-create
+ros-hydro-turtlebot-actions
+ros-hydro-turtlebot-calibration
+ros-hydro-turtlebot-core-apps
+ros-hydro-turtlebot-follower
+ros-hydro-turtlebot-navigation
+ros-hydro-turtlebot-panorama
+ros-hydro-turtlebot-teleop
 ros-hydro-turtlebot-dashboard
+ros-hydro-turtlebot-gazebo
 ros-hydro-turtlebot-simulator
+ros-hydro-turtlebot-rviz-launchers
 ros-hydro-turtlebot-viz
+ros-hydro-turtlebot
 # ----
 #ros-system-tools-groovy
-#ros-system-workstation-groovy
+ros-system-workstation-hydro
 #ros-system-daemon-groovy
 #turtlebot-ros-hydro
 #turtlebot-config
@@ -136,6 +156,6 @@ ros-hydro-turtlebot-viz
 #turtlebot-doc-groovy
 #turtlebot-indicator-groovy
 #turtlebot-branding-groovy
-#turtlebot-wallpapers
-#ihe-branding
-#ihe-wallpapers
+#turtlebot-wallpapers-hydro
+#ihe-wallpapers-hydro
+ihe-branding-hydro

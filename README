@@ -26,8 +26,18 @@ the machine ready for the enduser.
 Getting it to install from PXE boot is left as an exercise for the
 vendor. Patches are appreciated.
 
-Known Bugs
+Notes and Known Bugs
 --------------------------------
-UEFI sucks. Often the installer will fail, when booting off of USB
-make sure to select the non-UEFI option.
+UEFI sucks and SecureBoot is designed to allow companies to control
+what is installed on your computer. Demand hardware without it.
+Newer machines may require UEFI, so you may or may not need to boot the
+system in UEFI mode. 32-bit machines do not work with UEFI.
+https://help.ubuntu.com/community/UEFI
 
+Installing with wireless enabled seems to work slightly better.
+Otherwise you may need to run the following when the system is online.
+  sudo apt-get update
+  sudo agt-get dist-upgrade
+
+If wireless access points do not show up, try disabling and reenabling
+the wireless network connection.
