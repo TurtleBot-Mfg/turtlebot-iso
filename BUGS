@@ -1,3 +1,5 @@
+SecureBoot was backported into 12.04.2 and later, thanks Canonical.
+Ubuntu 12.04.3 has been released, which might fix things.
 
 in /etc/ros/setup.sh
 
