@@ -1,12 +1,10 @@
---- ubiquity-dm.orig	2012-07-15 05:26:40.437640996 -0400
-+++ ubiquity-dm	2012-07-15 06:30:52.443807573 -0400
-@@ -328,7 +328,8 @@
+--- ubiquity-dm.orig	2015-04-19 19:44:46.571126882 -0400
++++ ubiquity-dm	2015-04-19 19:46:36.411125290 -0400
+@@ -365,6 +365,7 @@
  
-             # Set a desktop wallpaper.
-             with open('/proc/cmdline', 'r') as fp:
--                for background in ('/usr/share/backgrounds/edubuntu_default.png',
-+                for background in ('/usr/share/backgrounds/TurtleBot_Init_by_IHE.jpg',
-+                    '/usr/share/backgrounds/edubuntu_default.png',
-                     '/usr/share/xfce4/backdrops/macinnis_wallpaper.png',
-                     '/usr/share/xfce4/backdrops/xubuntu-precise-right.png',
-                     '/usr/share/backgrounds/warty-final-ubuntu.png'):
+             background_image = None
+             for background in (
++                    '/usr/share/backgrounds/TurtleBot_Init_by_IHE.jpg',
+                     '/usr/share/xfce4/backdrops/ubuntustudio-1310.png',
+                     '/usr/share/xfce4/backdrops/xubuntu-wallpaper.png',
+                     '/usr/share/lubuntu/wallpapers/'

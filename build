@@ -1,5 +1,5 @@
-UBUNTU_ISO=~/Downloads/ubuntu-12.04.2-desktop-amd64.iso
-ISO_DIR=~/turtlebot/turtlebot-iso
+UBUNTU_ISO=~/Downloads/ubuntu-14.04.2-desktop-amd64.iso
+ISO_DIR=~/Code/turtlebot-iso
 #PROXY is a file containing the URL for a squid proxy
 #sudo http_proxy=`cat PROXY` uck-remaster $UBUNTU_ISO $ISO_DIR
 sudo uck-remaster $UBUNTU_ISO $ISO_DIR /iso

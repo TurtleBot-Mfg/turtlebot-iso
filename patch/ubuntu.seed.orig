@@ -7,3 +7,4 @@ tasksel	tasksel/first	multiselect ubuntu-desktop
 # have the space to include them on the DVD, they're useful and we might as
 # well keep them installed.
 ubiquity	ubiquity/keep-installed	string icedtea6-plugin openoffice.org
+d-i  base-installer/kernel/altmeta   string lts-utopic

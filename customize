@@ -68,10 +68,13 @@ def add_repository():
     if chrooted:
         repo_file = open("/etc/apt/sources.list.d/ros-latest.list", "w")
         # print >> repo_file, "deb http://packages.ros.org/ros-shadow-fixed/ubuntu precise main #Robot Operating System"
-        print >> repo_file, "deb http://packages.ros.org/ros/ubuntu precise main #Robot Operating System"
+        print >> repo_file, "deb http://packages.ros.org/ros/ubuntu trusty main #Robot Operating System"
+        repo_file.close()
+        repo_file = open("/etc/apt/sources.list.d/google.list", "w")
+        print >> repo_file, "deb http://dl.google.com/linux/deb/ stable main"
         repo_file.close()
     else:
-        print("add_repository(): deb ... #Robot Operating System")
+        print("add_repository(): deb ... #Robot Operating System & Google")
 
 def enable_multiuniverse():
     if chrooted:
@@ -83,10 +86,20 @@ def enable_multiuniverse():
 def enable_ros_bashrc():
     if chrooted:
         bashrc_file = open("/etc/skel/.bashrc", "a")
-        print >> bashrc_file, "source /opt/ros/hydro/setup.bash"
+        print >> bashrc_file, """
+source /opt/ros/indigo/setup.bash
+
+# Environment variables to work with remote workstation
+export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://localhost:11311
+
+# Customise turtlebot
+# http://wiki.ros.org/turtlebot/Tutorials/indigo/Customising%20the%20Turtle
+export TURTLEBOT_NAME=turtlebot
+"""
         bashrc_file.close()
     else:
-        print("enable_ros_bashrc(): source /opt/ros/hydro/setup.bash")
+        print("enable_ros_bashrc(): source /opt/ros/indigo/setup.bash")
 
 def main(args):
     global script_dir
@@ -103,18 +116,19 @@ def main(args):
         print "Cannot detect chrooted environment: Running in DEBUG Mode"
 
     print >> sys.stderr, "enable_multiuniverse()"
-    enable_multiuniverse()
+    # FIXME: enable_multiuniverse()
+    status = os.system('sudo add-apt-repository -y "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse"')
+    status = os.system('sudo add-apt-repository -y "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse"')
     add_repository()
-    install_key("http://packages.ros.org/ros.key")
-    status = os.system("sudo add-apt-repository -y ppa:iheartengineering/ros-support")
+    install_key("https://raw.githubusercontent.com/ros/rosdistro/master/ros.key")
+    install_key("https://dl-ssl.google.com/linux/linux_signing_key.pub")
+    status = os.system("sudo add-apt-repository -y ppa:neautomation/ros")
 
     print >> sys.stderr, "update_package_cache()"
     update_package_cache()
     #status = os.system("mv /etc/kernel/postinst.d/zz-update-grub /etc/kernel/postinst.d/zz-update-grub.bak")
-    #status = os.system("apt-get update --assume-yes")
     #status = os.system("apt-get upgrade --assume-yes")
     #status = os.system("mv /etc/kernel/postinst.d/zz-update-grub.bak /etc/kernel/postinst.d/zz-update-grub")
-    print "F005"
 
     print >> sys.stderr, "Deinstall unwanted packages"
     # Deinstall unwanted packages
@@ -152,8 +166,8 @@ def main(args):
             install_pip(package)
     pip_file.close()
 
-    apt_autorm()
-    update_package_cache()
+#    apt_autorm()
+#    update_package_cache()
     #status = os.system("apt-get upgrade --assume-yes")
 
     print >> sys.stderr, "enable_ros_bashrc"

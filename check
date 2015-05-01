@@ -1,2 +1,2 @@
 #!/bin/sh
-grep -iP '(FATAL|unmet|error|fail)' uck.log | grep -v liberror | grep -v libgpg-error-dev
+grep -iP '(FATAL|unmet|error|fail)' uck.log | grep -v liberror | grep -v libgpg-error-dev | grep -v ros-indigo-ecl-errors
