@@ -41,3 +41,8 @@ Otherwise you may need to run the following when the system is online.
 
 If wireless access points do not show up, try disabling and reenabling
 the wireless network connection.
+
+Sponsors
+--------
+Development of this software for ROS Indigo has been partially sponsored by Yujin Robot Co.,Ltd
+http://www.yujinrobot.com/
